@@ -1,3 +1,15 @@
+# Simple Graphics Library to Draw on InMemory buffers on Resource-Constrained Devices
+
+This library is based on the framework of [Adafruit GFX library](https://github.com/adafruit/Adafruit-GFX-Library).
+
+It has been adapted to draw on YUV444 images that are stored as blobs in memory. 
+
+We removed all display support as this is not needed for our application.
+
+# Original Documentation Below
+
+----
+
 # Adafruit GFX Library ![Build Status](https://github.com/adafruit/Adafruit-GFX-Library/workflows/Arduino%20Library%20CI/badge.svg)
 
 This is the core graphics library for all our displays, providing a common set of graphics primitives (points, lines, circles, etc.). It needs to be paired with a hardware-specific library for each display device we carry (to handle the lower-level functions).

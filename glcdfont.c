@@ -4,16 +4,7 @@
 #ifndef FONT5X7_H
 #define FONT5X7_H
 
-#ifdef __AVR__
-#include <avr/io.h>
-#include <avr/pgmspace.h>
-#elif defined(ESP8266)
-#include <pgmspace.h>
-#elif defined(__IMXRT1052__) || defined(__IMXRT1062__)
-// PROGMEM is defefind for T4 to place data in specific memory section
-#undef PROGMEM
-#define PROGMEM
-#else
+#ifndef PROGMEM
 #define PROGMEM
 #endif
 
