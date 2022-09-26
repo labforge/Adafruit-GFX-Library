@@ -1818,13 +1818,20 @@ void GFXcanvas1::drawFastRawHLine(int16_t x, int16_t y, int16_t w,
    @brief    Instatiate a GFX 8-bit canvas context for graphics
    @param    w   Display width, in pixels
    @param    h   Display height, in pixels
+   @param    buf Existing buffer to use as backend storage.
 */
 /**************************************************************************/
-GFXcanvas8::GFXcanvas8(uint16_t w, uint16_t h) : Adafruit_GFX(w, h) {
-  uint32_t bytes = w * h;
-  if ((buffer = (uint8_t *)malloc(bytes))) {
-    memset(buffer, 0, bytes);
-  }
+GFXcanvas8::GFXcanvas8(uint16_t w, uint16_t h, void*buf) : Adafruit_GFX(w, h) {
+    if(buf == NULL) {
+      uint32_t bytes = w * h;
+      if ((buffer = (uint8_t *)malloc(bytes))) {
+        memset(buffer, 0, bytes);
+      }
+      buffer_created = true;
+    } else {
+      buffer = (uint8_t*)buf;
+      buffer_created = false;
+    }
 }
 
 /**************************************************************************/
@@ -1833,7 +1840,7 @@ GFXcanvas8::GFXcanvas8(uint16_t w, uint16_t h) : Adafruit_GFX(w, h) {
 */
 /**************************************************************************/
 GFXcanvas8::~GFXcanvas8(void) {
-  if (buffer)
+  if (buffer_created)
     free(buffer);
 }
 
@@ -2086,13 +2093,20 @@ void GFXcanvas8::drawFastRawHLine(int16_t x, int16_t y, int16_t w,
    @brief    Instatiate a GFX 16-bit canvas context for graphics
    @param    w   Display width, in pixels
    @param    h   Display height, in pixels
+   @param    buf Existing buffer to use as backend storage.
 */
 /**************************************************************************/
-GFXcanvas16::GFXcanvas16(uint16_t w, uint16_t h) : Adafruit_GFX(w, h) {
-  uint32_t bytes = w * h * 2;
-  if ((buffer = (uint16_t *)malloc(bytes))) {
-    memset(buffer, 0, bytes);
-  }
+GFXcanvas16::GFXcanvas16(uint16_t w, uint16_t h, void*buf) : Adafruit_GFX(w, h) {
+    if(buf == NULL) {
+        uint32_t bytes = w * h * 2;
+        if ((buffer = (uint16_t *)malloc(bytes))) {
+            memset(buffer, 0, bytes);
+        }
+        buffer_created = true;
+    } else {
+        buffer = (uint16_t*)buf;
+        buffer_created = false;
+    }
 }
 
 /**************************************************************************/
@@ -2101,7 +2115,7 @@ GFXcanvas16::GFXcanvas16(uint16_t w, uint16_t h) : Adafruit_GFX(w, h) {
 */
 /**************************************************************************/
 GFXcanvas16::~GFXcanvas16(void) {
-  if (buffer)
+  if (buffer_created)
     free(buffer);
 }
 

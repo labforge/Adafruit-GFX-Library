@@ -268,7 +268,7 @@ private:
 /// A GFX 8-bit canvas context for graphics
 class GFXcanvas8 : public Adafruit_GFX {
 public:
-  GFXcanvas8(uint16_t w, uint16_t h);
+  GFXcanvas8(uint16_t w, uint16_t h, void*buffer=NULL);
   ~GFXcanvas8(void);
   void drawPixel(int16_t x, int16_t y, uint16_t color);
   void fillScreen(uint16_t color);
@@ -290,12 +290,13 @@ protected:
 
 private:
   uint8_t *buffer;
+  bool buffer_created;
 };
 
 ///  A GFX 16-bit canvas context for graphics
 class GFXcanvas16 : public Adafruit_GFX {
 public:
-  GFXcanvas16(uint16_t w, uint16_t h);
+  GFXcanvas16(uint16_t w, uint16_t h, void*buffer=NULL);
   ~GFXcanvas16(void);
   void drawPixel(int16_t x, int16_t y, uint16_t color);
   void fillScreen(uint16_t color);
@@ -318,6 +319,7 @@ protected:
 
 private:
   uint16_t *buffer;
+  bool buffer_created;
 };
 
 ///  A GFX 24-bit canvas context for graphics
