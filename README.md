@@ -1,4 +1,4 @@
-# Simple Graphics Library to Draw on InMemory buffers on Resource-Constrained Devices
+# Simple Graphics Library to Draw on InMemory Buffers on Resource-Constrained Devices
 
 This library is based on the framework of [Adafruit GFX library](https://github.com/adafruit/Adafruit-GFX-Library).
 
