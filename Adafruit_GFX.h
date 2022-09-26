@@ -320,4 +320,40 @@ private:
   uint16_t *buffer;
 };
 
+///  A GFX 24-bit canvas context for graphics
+class GFXcanvas24 :  public Adafruit_GFX {
+public:
+    GFXcanvas24(uint16_t w, uint16_t h, void * buffer = NULL);
+    ~GFXcanvas24(void);
+    void drawPixel(int16_t x, int16_t y, uint16_t color);
+    void fillScreen(uint16_t color);
+    void byteSwap(void);
+    void drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
+    void drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color);
+    uint16_t getPixel(int16_t x, int16_t y) const;
+    /**********************************************************************/
+    /*!
+      @brief    Get a pointer to the internal buffer memory
+      @returns  A pointer to the allocated buffer
+    */
+    /**********************************************************************/
+    uint8_t *getBuffer(void) const { return buffer; }
+
+    static uint16_t RgbToRgb565(uint8_t r, uint8_t g, uint8_t b);
+    static void Rgb565ToRGB(uint16_t rgb565, uint8_t *r, uint8_t *g, uint8_t *b);
+    static void Rgb565ToYUV(uint16_t rgb565, uint8_t *y, uint8_t *cr, uint8_t *cb);
+
+protected:
+    uint16_t getRawPixel(int16_t x, int16_t y) const;
+    void drawFastRawVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
+    void drawFastRawHLine(int16_t x, int16_t y, int16_t w, uint16_t color);
+
+    static void rgb_to_yuv(uint16_t rgb565, uint8_t *y, uint8_t*u, uint8_t*v);
+
+
+private:
+    uint8_t *buffer;
+    bool buffer_created;
+};
+
 #endif // _ADAFRUIT_GFX_H

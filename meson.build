@@ -26,4 +26,6 @@ app_inc = include_directories(
 	'.',
 	)
 
-library('adafruitgfx', ['Adafruit_GFX.cpp', 'glcdfont.c'], version : '1.11.3')
+lib_gfx = library('adafruitgfx', ['Adafruit_GFX.cpp', 'glcdfont.c'], version : '1.11.3')
+
+subdir('examples')
